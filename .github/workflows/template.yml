@@ -1,0 +1,52 @@
+name: "Deploy Azure Infrastructure"
+# description: "Pushes built artifacts to Docker"
+
+inputs:
+  azure_credentials:
+    description: "The Azure service principal secret to authenticate"
+    required: true
+  subscription_id:
+    description: "Enter the Azure Subscription ID"
+    required: true
+  environment_name:
+    description: "Enter the name of the environment to deploy"
+    required: true
+  location:
+    description: "Enter the Azure location to deploy to"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+      - uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: Azure/login@v1
+        with:
+          creds: ${{ inputs.azure_credentials }}
+
+      - name: Deploy Resource Group rg-${{ inputs.environment_name }}
+        uses: Azure/arm-deploy@v1
+        with:
+          scope: subscription
+          subscriptionId: ${{ inputs.subscription_id }}
+          region: "${{ inputs.location }}"
+          template: ./arm-templates/resourcegroup.json
+          parameters:
+            location="${{ inputs.location }}"
+            resourceGroupName=rg-${{ inputs.environment_name }}
+          deploymentName: ${{ inputs.environment_name }}
+
+      - name: Deploy Storage Account
+        uses: Azure/arm-deploy@v1
+        id: storageAccountDeploy
+        with:
+          scope: resourcegroup
+          resourceGroupName: rg-${{ inputs.environment_name }}
+          subscriptionId: ${{ inputs.subscription_id }}
+          template: ./arm-templates/storageaccount.json
+          parameters: 
+            sku=Standard_LRS
+            storageAccountName=globostg${{ inputs.environment_name }}002
+            location="${{ inputs.location }}"
+          deploymentMode: incremental

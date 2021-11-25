@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Azure Deployment
-        uses: parallo-mattallford/workflowtest/.github/workflows/template.yml@main
+        uses: parallo-mattallford/workflowtest/.github/workflows/templates@main
         with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           subscription_id: 7ecbc33f-d50e-4339-a26b-eb307001d280

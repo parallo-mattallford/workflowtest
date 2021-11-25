@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Azure Deployment
-      uses: parallo-mattallford/workflowtest/.github/workflows/templates@main
-      with:
-        azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-        subscription_id: 7ecbc33f-d50e-4339-a26b-eb307001d280
-        environment_name: production
-        location: Australia East
+      - name: Azure Deployment
+        uses: parallo-mattallford/workflowtest/.github/templates@main
+        with:
+          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          subscription_id: 7ecbc33f-d50e-4339-a26b-eb307001d280
+          environment_name: production
+          location: Australia East

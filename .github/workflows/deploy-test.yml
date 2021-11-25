@@ -1,10 +1,10 @@
-name: Deploy production Azure Infrastructure
+name: Deploy test Azure Infrastructure
 
 on:
   workflow_dispatch:
     
 jobs:
-  Deploy_production:
+  Deploy_test:
     runs-on: ubuntu-latest
 
     steps:
@@ -13,5 +13,5 @@ jobs:
       with:
         azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
         subscription_id: 8c6ccaa9-9f43-4f74-a91e-12a9f922d72c
-        environment_name: production
+        environment_name: test
         location: Australia East

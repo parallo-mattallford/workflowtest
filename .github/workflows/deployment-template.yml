@@ -2,28 +2,28 @@ name: "Deploy Azure Infrastructure"
 
 on:
   workflow_call:
-  inputs:
-    subscription_id:
-      description: "Enter the Azure Subscription ID"
-      required: true
-      type: string
-    environment_name:
-      description: "Enter the name of the environment to deploy"
-      required: true
-      type: string
-    location:
-      description: "Enter the Azure location to deploy to"
-      required: true
-      type: string
-  secrets:
-    azure_credentials:
-      description: "The Azure service principal secret to authenticate"
-      required: true
+    inputs:
+      subscription_id:
+        description: "Enter the Azure Subscription ID"
+        required: true
+        type: string
+      environment_name:
+        description: "Enter the name of the environment to deploy"
+        required: true
+        type: string
+      location:
+        description: "Enter the Azure location to deploy to"
+        required: true
+        type: string
+    secrets:
+      azure_credentials:
+        description: "The Azure service principal secret to authenticate"
+        required: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v2
 

@@ -2,9 +2,9 @@ name: "Deploy Azure Infrastructure"
 description: "Deploy Azure Infrastructure"
 
 inputs:
-  azure_credentials:
-    description: "The Azure service principal secret to authenticate"
-    required: true
+  # azure_credentials:
+  #   description: "The Azure service principal secret to authenticate"
+  #   required: true
   subscription_id:
     description: "Enter the Azure Subscription ID"
     required: true
@@ -20,10 +20,10 @@ runs:
   steps:
   - uses: actions/checkout@v2
 
-  - name: Azure Login
-    uses: Azure/login@v1
-    with:
-      creds: ${{ inputs.azure_credentials }}
+  # - name: Azure Login
+  #   uses: Azure/login@v1
+  #   with:
+  #     creds: ${{ inputs.azure_credentials }}
 
   - name: Deploy Resource Group rg-${{ inputs.environment_name }}
     uses: Azure/arm-deploy@v1

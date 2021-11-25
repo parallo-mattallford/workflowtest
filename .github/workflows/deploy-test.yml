@@ -12,6 +12,6 @@ jobs:
       uses: parallo-mattallford/workflowtest/.github/templates@main
       with:
         azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-        subscription_id: 8c6ccaa9-9f43-4f74-a91e-12a9f922d72c
+        subscription_id: 7ecbc33f-d50e-4339-a26b-eb307001d280
         environment_name: test
         location: Australia East
